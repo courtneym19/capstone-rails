@@ -1,2 +1,57 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
+<body>
+  <div class="home-header">
+    <div class="home-title">
+      <h1>Soul Spectrum Podcast</h1>
+    </div>
+    <div id="home-nav">
+      <%=link_to "Home", root_path%>
+      <a href="">iTunes</a>
+      <a href="">About</a>
+    </div>
+    <main class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <p id="blog-header">Updates</p>
+        </div>
+        <div class="col-md-5">
+          <p class="sidebar-header">Receive Email Updates</p>
+          <form action="//facebook.us16.list-manage.com/subscribe/post?u=1a79d6d6eca2db7827419e472&amp;id=6aac485fea" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+            <input type="email" id="email-field" placeholder="Enter your email address here..." required>
+            <input type="submit" id="email-submit" value="Submit">
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-7" id="blog-content">
+          <!-- blog content here -->
+        </div>
+        <div class="col-md-5">
+          <p class="sidebar-header">Episodes</p>
+          <iframe src='https://www.podbean.com/media/player/nzdur-70cb0b?from=yiiadmin' data-link='https://www.podbean.com/media/player/nzdur-70cb0b?from=yiiadmin' height='100' width='100%' frameborder='0' scrolling='no' data-name='pb-iframe-player' ></iframe>
+            <div class="player-container">
+              <div class="pull-left" id="logo">
+                <img src="https://preview.ibb.co/n61Me5/4aa0fed47e216c10752bc3aa15c44b6e.jpg" border="0" id="player-logo" alt="Lua Jaksik art">
+              </div>
+              <div class="player-content">
+                <div class="row">
+                  <div class="col" id="episode-info">
+                    Episode #1 | <br> Magical Meanderings with Courtney and Lua
+                  </div>
+                  <div class="col">
+                    <a class="ion-share" id="player-share" href="";></a>
+                  </div>
+                </div>
+                <div class="row" id="player-controls">
+                  <a class="player-buttons" style="display:inline"><span class="ion-play"></span></a>
+                  <!-- <a class="player-buttons" ng-show="" ng-click=""><span class="ion-pause"></span></a> -->
+                  <div class="current-time" style="display:inline">0:00</div>
+                  <div class="total-time" style="display:inline">-:--</div>
+                  <a class="player-volume" style="display:inline"><span class="ion-android-volume-down"></span></a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>

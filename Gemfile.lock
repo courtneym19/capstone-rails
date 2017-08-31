@@ -41,7 +41,12 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
+    autoprefixer-rails (7.1.3)
+      execjs
     bindex (0.5.0)
+    bootstrap-sass (3.3.7)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     bower-rails (0.11.0)
     builder (3.2.3)
     byebug (9.1.0)
@@ -65,6 +70,8 @@ GEM
     erubi (1.6.1)
     execjs (2.7.0)
     ffi (1.9.18)
+    font-ionicons-rails (2.0.1.5)
+      railties (>= 3.2, < 6.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     i18n (0.8.6)
@@ -177,10 +184,12 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
+  bootstrap-sass
   bower-rails
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  font-ionicons-rails
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   puma (~> 3.7)
