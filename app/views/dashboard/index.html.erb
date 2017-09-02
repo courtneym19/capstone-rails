@@ -26,32 +26,25 @@
           <!-- blog content here -->
         </div>
         <div class="col-md-5">
-          <p class="sidebar-header" ng-controller="EpisodesCtrl" >Episodes</p>
-          <iframe src='https://www.podbean.com/media/player/nzdur-70cb0b?from=yiiadmin' data-link='https://www.podbean.com/media/player/nzdur-70cb0b?from=yiiadmin' height='100' width='100%' frameborder='0' scrolling='no' data-name='pb-iframe-player' ></iframe>
-            <div class="player-container">
-              <div class="pull-left" id="logo">
-                <img src="https://preview.ibb.co/n61Me5/4aa0fed47e216c10752bc3aa15c44b6e.jpg" border="0" id="player-logo" alt="Lua Jaksik art">
-              </div>
-              <div class="player-content">
-                <div class="row">
-                  <div class="col" id="episode-info">
-                    Ep.1 | <br> Magical Meandering with Courtney and Lua
+          <p class="sidebar-header">Episodes</p>
+          <div class="row" ng-controller="EpisodeCtrl">
+            <input type="text" class="form-control" id="search" ng-model="search" placeholder="Type search phrase here..." />
+              <div ng-repeat="episode in episodes | filter : search">
+                <div class="episode-container">
+                  <div class="row">
+                    <div class="pull-left" id="logo">
+                      <img src="https://preview.ibb.co/n61Me5/4aa0fed47e216c10752bc3aa15c44b6e.jpg" border="0" id="player-logo" alt="Lua Jaksik art">
+                    </div>
+                    <div class="col" id="episode-info">
+                      {{episode.title}} | Ep. #{{episode.number}} | {{episode.date}} <br> {{episode.description}}
+                    </div>
+                    <div class="pull-right">
+                      <a class="ion-share" id="player-share" href="";></a>
+                    </div>
                   </div>
-                  <div class="col">
-                    <a class="ion-share" id="player-share" href="";></a>
-                  </div>
-                </div>
-                <div class="row" id="player-controls">
-                  <a class="player-buttons" style="display:inline"><span class="ion-play"></span></a>
-                  <!-- <a class="player-buttons" ng-show="" ng-click=""><span class="ion-pause"></span></a> -->
-                  <div class="current-time" style="display:inline">0:00</div>
-                  <div class="total-time" style="display:inline">-:--</div>
-                  <a class="player-volume" style="display:inline"><span class="ion-android-volume-down"></span></a>
-                </div>
               </div>
           </div>
         </div>
-      </div>
     </main>
   </div>
 </body>
