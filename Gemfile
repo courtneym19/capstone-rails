@@ -18,6 +18,7 @@ gem 'railties'
 gem 'activesupport'
 gem 'bootstrap-sass'
 gem "font-ionicons-rails"
+gem 'buzz-rails', '~>0.0.1'
 
 
 group :development, :test do
