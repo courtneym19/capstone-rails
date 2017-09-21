@@ -1,3 +1,4 @@
 
 asset 'angular'
 asset 'bootstrap'
+asset 'angular-route'

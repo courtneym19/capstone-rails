@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  
 
-  root 'dashboard#index'
+  get 'index' => 'dashboard#index'
+
+  root 'dashboard#home'
 
 end
