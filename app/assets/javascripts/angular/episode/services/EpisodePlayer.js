@@ -47,8 +47,6 @@ app.factory('EpisodePlayer', ['Episode', '$rootScope', function(Episode, $rootSc
           if (EpisodePlayer.currentEpisode !== episode) {
               setEpisode(episode);
               playEpisode(episode);
-              console.log(currentBuzzObject.isPaused())
-
           }
 
           else if (EpisodePlayer.currentEpisode === episode) {
@@ -65,6 +63,9 @@ app.factory('EpisodePlayer', ['Episode', '$rootScope', function(Episode, $rootSc
                      var episode = episodes[currentEpisodeIndex];
                      setEpisode(episode);
                      playEpisode(episode);
+                 }
+                 else {
+                   stopEpisode();
                  }
              })
           }
