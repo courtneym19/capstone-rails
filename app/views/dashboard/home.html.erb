@@ -47,7 +47,11 @@
                     <a class="player-buttons" ng-show="episode.playing" ng-click="EpisodePlayer.pause(episode)"><span class="ion-pause"></span></a>
                     <div class="current-time" style="display:inline">0:00</div>
                     <div class="total-time" style="display:inline">-:--</div>
-                    <a class="player-volume" style="display:inline"><span class="ion-android-volume-down"></span></a>
+
+                    <div class="player-volume" style="display:inline">
+                        <span class="ion-android-volume-down"></span>
+                        <seek-bar value="{{ EpisodePlayer.volume }}" max="{{ 100 }}" on-change="EpisodePlayer.setVolume(value)" ng-style="fillStyle()"></seek-bar>
+                    </div>
                   </div>
               </div>
           </div>

@@ -20,6 +20,7 @@ gem 'bootstrap-sass'
 gem "font-ionicons-rails"
 gem 'ngannotate-rails'
 gem 'angular-rails-templates'
+gem 'jquery-rails'
 
 
 group :development, :test do

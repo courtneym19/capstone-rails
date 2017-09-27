@@ -1,6 +1,6 @@
 var app = angular.module('capstoneAngular');
 
-app.factory('EpisodePlayer', ['Episode', function(Episode){
+app.factory('EpisodePlayer', ['Episode', '$rootScope', function(Episode, $rootScope){
    var EpisodePlayer = {};
 
    var currentBuzzObject = null;
@@ -17,9 +17,14 @@ app.factory('EpisodePlayer', ['Episode', function(Episode){
       currentBuzzObject = new buzz.sound(episode.audioUrl, {
           formats: ['mp3'],
           preload: true
-          // volume: EpisodePlayer.volume
       });
       EpisodePlayer.currentEpisode = episode;
+
+      currentBuzzObject.bind('timeupdate', function() {
+           $rootScope.$apply(function() {
+               EpisodePlayer.currentTime = currentBuzzObject.getTime();
+           });
+       });
    };
 
     var playEpisode = function(episode) {
@@ -38,11 +43,11 @@ app.factory('EpisodePlayer', ['Episode', function(Episode){
       };
 
      EpisodePlayer.play = function(episode) {
-       console.log("playing")
           episode = episode || EpisodePlayer.currentEpisode;
           if (EpisodePlayer.currentEpisode !== episode) {
               setEpisode(episode);
               playEpisode(episode);
+              console.log(currentBuzzObject.isPaused())
 
           }
 
@@ -71,82 +76,66 @@ app.factory('EpisodePlayer', ['Episode', function(Episode){
            episode.playing = false;
         };
 
-  // include in setEpisode function
 
-  //     currentBuzzObject.bind('timeupdate', function() {
-  //          $rootScope.$apply(function() {
-  //              EpisodePlayer.currentTime = currentBuzzObject.getTime();
-  //          });
-  //      });
-  //
-  //
-  //
 
-  //
 
-  //
 
-  //
-  //
-  //
-  //  EpisodePlayer.currentTime = null;
-  //
-  //  EpisodePlayer.volume = 80;
-  //
-  //
-  //
+        EpisodePlayer.currentTime = null;
 
-  //
-  // // EpisodePlayer.previous = function() {
-  // //      var currentEpisodeIndex = getEpisodeIndex(EpisodePlayer.currentEpisode);
-  // //      currentEpisodeIndex--;
-  // //
-  // //      if (currentEpisodeIndex < 0) {
-  // //          stopEpisode();
-  // //      }
-  // //      else {
-  // //          var episode = episodes[currentEpisodeIndex];
-  // //          setEpisode(episode);
-  // //          playEpisode(episode);
-  // //      }
-  // // };
-  // //
-  // // EpisodePlayer.next = function() {
-  // //     var currentEpisodeIndex = getEpisodeIndex(EpisodePlayer.currentEpisode);
-  // //     currentEpisodeIndex++;
-  // //
-  // //     if (currentEpisodeIndex >= episodes.length) {
-  // //         stopEpisode();
-  // //     }
-  // //     else {
-  // //         var episode = episodes[currentEpisodeIndex];
-  // //         setEpisode(episode);
-  // //         playEpisode(episode);
-  // //     }
-  // // };
-  //
-  // EpisodePlayer.setCurrentTime = function(time) {
-  //     if (currentBuzzObject) {
-  //         currentBuzzObject.setTime(time);
-  //     }
-  // };
-  //
-  // EpisodePlayer.setVolume = function(volume) {
-  //     if (currentBuzzObject) {
-  //         currentBuzzObject.setVolume(volume);
-  //         EpisodePlayer.volume = volume;
-  //
-  //     }
-  // };
-  //
-  // EpisodePlayer.muteVolume = function() {
-  //     if (currentBuzzObject) {
-  //         currentBuzzObject.toggleMute();
-  //         var muteButton = document.getElementsByClassName('mute');
-  //         muteButton[0].classList.toggle('mute-active');
-  //     }
-  //
-  // };
+        EpisodePlayer.volume = 80;
+
+
+
+        EpisodePlayer.previous = function() {
+             var currentEpisodeIndex = getEpisodeIndex(EpisodePlayer.currentEpisode);
+             currentEpisodeIndex--;
+
+             if (currentEpisodeIndex < 0) {
+                 stopEpisode();
+             }
+             else {
+                 var episode = episodes[currentEpisodeIndex];
+                 setEpisode(episode);
+                 playEpisode(episode);
+             }
+        };
+
+        EpisodePlayer.next = function() {
+            var currentEpisodeIndex = getEpisodeIndex(EpisodePlayer.currentEpisode);
+            currentEpisodeIndex++;
+
+            if (currentEpisodeIndex >= episodes.length) {
+                stopEpisode();
+            }
+            else {
+                var episode = episodes[currentEpisodeIndex];
+                setEpisode(episode);
+                playEpisode(episode);
+            }
+        };
+
+        EpisodePlayer.setCurrentTime = function(time) {
+            if (currentBuzzObject) {
+                currentBuzzObject.setTime(time);
+            }
+        };
+
+        EpisodePlayer.setVolume = function(volume) {
+            if (currentBuzzObject) {
+                currentBuzzObject.setVolume(volume);
+                EpisodePlayer.volume = volume;
+
+            }
+        };
+
+        EpisodePlayer.muteVolume = function() {
+            if (currentBuzzObject) {
+                currentBuzzObject.toggleMute();
+                var muteButton = document.getElementsByClassName('mute');
+                muteButton[0].classList.toggle('mute-active');
+            }
+
+        };
 
 
    return EpisodePlayer;

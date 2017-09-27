@@ -1,0 +1,33 @@
+<section class="player-bar" ng-controller="PlayerBarCtrl as playerBar">
+     <div class="container">
+         <div class="control-group main-controls">
+             <a class="previous" ng-click="playerBar.EpisodePlayer.previous()">
+                 <span class="ion-skip-backward"></span>
+             </a>
+             <a class="play-pause">
+                <span class="ion-play"
+                   ng-show="!playerBar.EpisodePlayer.currentEpisode.playing"
+                   ng-click="playerBar.EpisodePlayer.play()">
+                </span>
+                <span class="ion-pause"
+                   ng-show="playerBar.EpisodePlayer.currentEpisode.playing"
+                   ng-click="playerBar.EpisodePlayer.pause()">
+                </span>
+             </a>
+             <a class="next" ng-click="playerBar.EpisodePlayer.next()">
+                 <span class="ion-skip-forward"></span>
+             </a>
+         </div>
+         <div class="control-group currently-playing">
+             <h2 class="episode-name">{{ playerBar.EpisodePlayer.currentEpisode.title }}</h2>
+             <div class="seek-control">
+                 <seek-bar value="{{ playerBar.EpisodePlayer.currentTime }}" max="{{ playerBar.EpisodePlayer.currentEpisode.duration }}" on-change="playerBar.EpisodePlayer.setCurrentTime(value)"></seek-bar>
+                 <div class="current-time">{{ playerBar.EpisodePlayer.currentTime | timecode }}</div>
+                 <div class="total-time">{{ playerBar.EpisodePlayer.currentEpisode.duration | timecode }}</div>
+             </div>
+         </div>
+
+
+         
+     </div>
+ </section>
