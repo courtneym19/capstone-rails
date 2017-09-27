@@ -1,6 +1,8 @@
 var app = angular.module('capstoneAngular');
 
 app.directive('seekBar', ['$document', function($document){
+  var seekBar = {};
+
   var calculatePercent = function(seekBar, event) {
       var offsetX = event.pageX - seekBar.offset().left;
       var seekBarWidth = seekBar.width();
@@ -77,4 +79,6 @@ app.directive('seekBar', ['$document', function($document){
 
        }
    };
+
+   return seekBar;
 }])
