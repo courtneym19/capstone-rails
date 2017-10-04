@@ -18,18 +18,34 @@ app.factory('EpisodePlayer', ['Episode', '$rootScope', function(Episode, $rootSc
           formats: ['mp3'],
           preload: true
       });
-      EpisodePlayer.currentEpisode = episode;
 
       currentBuzzObject.bind('timeupdate', function() {
            $rootScope.$apply(function() {
                EpisodePlayer.currentTime = currentBuzzObject.getTime();
            });
        });
+
+       EpisodePlayer.currentEpisode = episode;
    };
 
     var playEpisode = function(episode) {
         currentBuzzObject.play();
         episode.playing = true;
+
+        if(currentBuzzObject) {
+           var currentEpisodeIndex = getEpisodeIndex(EpisodePlayer.currentEpisode);
+           currentBuzzObject.bind('ended', function() {
+               currentEpisodeIndex++;
+               if (currentEpisodeIndex < episodes.length) {
+                   var episode = episodes[currentEpisodeIndex];
+                   setEpisode(episode);
+                   playEpisode(episode);
+               }
+               else {
+                 stopEpisode();
+               }
+           })
+        }
 
     };
 
@@ -55,20 +71,6 @@ app.factory('EpisodePlayer', ['Episode', '$rootScope', function(Episode, $rootSc
               }
           }
 
-          if(currentBuzzObject) {
-             var currentEpisodeIndex = getEpisodeIndex(EpisodePlayer.currentEpisode);
-             currentBuzzObject.bind('ended', function() {
-                 currentEpisodeIndex++;
-                 if (currentEpisodeIndex < episodes.length) {
-                     var episode = episodes[currentEpisodeIndex];
-                     setEpisode(episode);
-                     playEpisode(episode);
-                 }
-                 else {
-                   stopEpisode();
-                 }
-             })
-          }
        };
 
         EpisodePlayer.pause = function(episode) {

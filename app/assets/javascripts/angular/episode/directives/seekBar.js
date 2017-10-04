@@ -13,7 +13,7 @@ app.directive('seekBar', ['$document', function($document){
   };
 
   return {
-      templateUrl: '/templates/directives/seek_bar.html',
+      templateUrl: '../dashboard/seek_bar.html.erb',
       replace: true,
       restrict: 'E',
       scope: {
