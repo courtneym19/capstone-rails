@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
-  get 'index' => 'dashboard#index'
+  # get 'home/index'
+  #
+  # root :to => 'views#application'
+  # get "*unmatched_route" => "views#application"
 
-  get 'seek_bar' => 'dashboard#seek_bar'
+  root 'home#index'
 
-  root 'dashboard#home'
+  
 
 end
